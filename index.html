@@ -1,8 +1,122 @@
 <html>
+<!-- 	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0'"> -->
+
 	<head>
+	    <title>ByteWRF</title>
+    	<meta charset="utf-8" />
+
+    	<link rel="stylesheet" href="css/style.css" />
+    	<link rel="stylesheet" href="css/leaflet.css" />
+    	<link rel="stylesheet" href="js/src/leaflet.draw.css" />
+    	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" />
+
+    	<script src="js/jquery-3.2.1.min.js"></script>
+	    <script src="js/leaflet.js"></script>
+
+		<!-- Leaflet Draw Import -->
+	 	<script src="js/src/Leaflet.draw.js"></script>
+	    <script src="js/src/Leaflet.Draw.Event.js"></script>
+	    <script src="js/src/Toolbar.js"></script>
+	    <script src="js/src/Tooltip.js"></script>
+	    <script src="js/src/ext/GeometryUtil.js"></script>
+	    <script src="js/src/ext/LatLngUtil.js"></script>
+	    <script src="js/src/ext/LineUtil.Intersect.js"></script>
+	    <script src="js/src/ext/Polygon.Intersect.js"></script>
+	    <script src="js/src/ext/Polyline.Intersect.js"></script>
+	    <script src="js/src/ext/TouchEvents.js"></script>
+	    <script src="js/src/draw/DrawToolbar.js"></script>
+	    <script src="js/src/draw/handler/Draw.Feature.js"></script>
+	    <script src="js/src/draw/handler/Draw.SimpleShape.js"></script>
+	    <script src="js/src/draw/handler/Draw.Polyline.js"></script>
+	    <script src="js/src/draw/handler/Draw.Circle.js"></script>
+	    <script src="js/src/draw/handler/Draw.Marker.js"></script>
+	    <script src="js/src/draw/handler/Draw.Polygon.js"></script>
+	    <script src="js/src/draw/handler/Draw.Rectangle.js"></script>
+	    <script src="js/src/edit/EditToolbar.js"></script>
+	    <script src="js/src/edit/handler/EditToolbar.Edit.js"></script>
+	    <script src="js/src/edit/handler/EditToolbar.Delete.js"></script>
+	    <script src="js/src/Control.Draw.js"></script>
+	    <script src="js/src/edit/handler/Edit.Poly.js"></script>
+	    <script src="js/src/edit/handler/Edit.SimpleShape.js"></script>
+	    <script src="js/src/edit/handler/Edit.Circle.js"></script>
+	    <script src="js/src/edit/handler/Edit.Rectangle.js"></script>
+	    <script src="js/src/edit/handler/Edit.Marker.js"></script>
+
+
+	    <script src="js/bytewrf.js"></script>
+
 	</head>
 
+
 	<body>
-		<p>Test</p>
+		<div id="mapid"></div>
+		<div id='menu'>
+			<div id='step1-dropdown' class='dropdown'>
+				<div class="dropdown-header ">
+                    <h3>1: Domain</h3> 
+                    <div class="dropdown-arrow rotated"> 
+                    	<i style="color: white;" class="fa fa-chevron-down fa-2x"></i>
+                    </div>
+                </div>
+                <div class='dropdown-content'>
+                	<div id='draw' class='menu-button button -dark center'>Draw</div>
+					<div id='edit' class='menu-button button -dark center' style="display: none">Edit</div>
+					<div id='save' class='menu-button button -dark center' style="display: none">Save</div>
+
+					<div id='domain_confirm' class='menu-button button -green center' style='display: none'>Confirm</div>
+                </div>
+			</div>
+
+			<div id='step2-dropdown' class='dropdown disabled'>
+				<div class="dropdown-header ">
+                    <h3>2: Grid</h3> 
+                    <div class="dropdown-arrow"> 
+                    	<i style="color: white;" class="fa fa-chevron-down fa-2x"></i>
+                    </div>
+                </div>
+                <div class='dropdown-content' style="display: none">
+                	<div id='draw' class='menu-button button -dark center'>Grid Spacing</div>
+                </div>
+			</div>
+
+			<div id='step3-dropdown' class='dropdown disabled'>
+				<div class="dropdown-header ">
+                    <h3>3: Date / Time</h3> 
+                    <div class="dropdown-arrow"> 
+                    	<i style="color: white;" class="fa fa-chevron-down fa-2x"></i>
+                    </div>
+                </div>
+                <div class='dropdown-content' style="display: none">
+                </div>
+			</div>
+
+			<div id='step4-dropdown' class='dropdown disabled'>
+				<div class="dropdown-header ">
+                    <h3>4: Optimize</h3> 
+                    <div class="dropdown-arrow"> 
+                    	<i style="color: white;" class="fa fa-chevron-down fa-2x"></i>
+                    </div>
+                </div>
+                <div class='dropdown-content' style="display: none">
+                </div>
+			</div>
+
+			<div id='step5-dropdown' class='dropdown disabled'>
+				<div class="dropdown-header ">
+                    <h3>5: Submit</h3> 
+                    <div class="dropdown-arrow"> 
+                    	<i style="color: white;" class="fa fa-chevron-down fa-2x"></i>
+                    </div>
+                </div>
+                <div class='dropdown-content' style="display: none">
+                </div>
+			</div>
+<!-- 			<div id='domain_draw'>
+				<h3>Step 1: Set up Domain</h3>
+				<div id='draw' class='menu-button button -dark center'>Draw</div>
+				<div id='edit' class='menu-button button -dark center' style="display: none">Edit</div>
+				<div id='save' class='menu-button button -dark center' style="display: none">Save</div>
+			</div> -->
+		</div>
 	</body>
 </html>
