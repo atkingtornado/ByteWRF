@@ -1,4 +1,18 @@
 $(document).ready(function(){
+
+	$("#sdate").flatpickr({
+	    enableTime: true,
+	    defaultDate:"today",
+	    minDate: "today",
+	    maxDate: new Date().fp_incr(14) // 14 days from now
+	});
+
+	$("#edate").flatpickr({
+	    enableTime: true,
+	    defaultDate:"today",
+	    minDate: "today",
+	    maxDate: new Date().fp_incr(14) // 14 days from now
+	});
 	//Initialize map
 	var basemap = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
 	    maxZoom: 18, 
@@ -125,5 +139,23 @@ $(document).ready(function(){
 	    $resolution.removeClass('resolution-selected');
 	    $(this).addClass('resolution-selected');
 	});
+
+	var $optimization = $('.optimize-select').on('touchstart click',function() {
+	    $optimization.removeClass('optimize-selected');
+	    $(this).addClass('optimize-selected');
+	});
+
+	$('#resolution_confirm').on('click',function(){
+	 	$('#step3-dropdown').removeClass('disabled')
+	 	$($('#step3-dropdown').children()[0]).trigger('click')
+	 })
+	$('#time_confirm').on('click',function(){
+	 	$('#step4-dropdown').removeClass('disabled')
+	 	$($('#step4-dropdown').children()[0]).trigger('click')
+	 })
+	$('#optimize_confirm').on('click',function(){
+	 	$('#step5-dropdown').removeClass('disabled')
+	 	$($('#step5-dropdown').children()[0]).trigger('click')
+	 })
 
 });

@@ -9,9 +9,12 @@
     	<link rel="stylesheet" href="css/leaflet.css" />
     	<link rel="stylesheet" href="js/src/leaflet.draw.css" />
     	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" />
+    	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+
 
     	<script src="js/jquery-3.2.1.min.js"></script>
 	    <script src="js/leaflet.js"></script>
+	    <script src="https://unpkg.com/flatpickr"></script>
 
 		<!-- Leaflet Draw Import -->
 	 	<script src="js/src/Leaflet.draw.js"></script>
@@ -101,6 +104,11 @@
                     </div>
                 </div>
                 <div class='dropdown-content' style="display: none">
+                	<p>Start Time:</p> <input class='date-picker' id='sdate' type='text' placeholder="">
+                	<p>End Time:</p> <input class='date-picker' id='edate' type='text' placeholder="">
+                	<br>
+                	<br>
+                	<div id='time_confirm' class='menu-button button -green center'>Confirm</div>
                 </div>
 			</div>
 
@@ -112,6 +120,17 @@
                     </div>
                 </div>
                 <div class='dropdown-content' style="display: none">
+                    <div id="severe" class="optimize-select optimize-selected">
+                        <p>Severe Weather</p>
+                    </div>
+                    <div id="winter" class="optimize-select">
+                        <p>Winter Weather</p>
+                    </div>
+                    <div id="tropical" class="optimize-select">
+                        <p>Tropical Weather</p>
+                    </div>
+                    <br>
+                    <div id='optimize_confirm' class='menu-button button -green center'>Confirm</div>
                 </div>
 			</div>
 
