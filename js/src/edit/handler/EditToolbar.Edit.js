@@ -124,6 +124,7 @@ L.EditToolbar.Edit = L.Handler.extend({
 		var editedLayers = new L.LayerGroup();
 		this._featureGroup.eachLayer(function (layer) {
 			if (layer.edited) {
+				console.log(layer)
 				editedLayers.addLayer(layer);
 				layer.edited = false;
 			}
@@ -231,7 +232,7 @@ L.EditToolbar.Edit = L.Handler.extend({
 
 		layer.edited = false;
 		if (layer.editing) {
-			layer.editing.disable();
+			// layer.editing.disable();
 		}
 
 		delete layer.options.editing;

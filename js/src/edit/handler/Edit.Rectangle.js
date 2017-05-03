@@ -76,7 +76,20 @@ L.Edit.Rectangle = L.Edit.SimpleShape.extend({
 		this._map.fire(L.Draw.Event.EDITMOVE, { layer: this._shape });
 	},
 
-	_resize: function (latlng) {
+	_resize: function (latlng,e) {
+		var resize_latlngs = this._shape._defaultShape ? this._shape._defaultShape() : this._shape.getLatLngs();
+		area = L.GeometryUtil.geodesicArea(resize_latlngs);
+		metric_area = parseFloat(L.GeometryUtil.readableArea(area, true).split(" ")[0])
+
+		if(metric_area > this._shape.options.maxArea){
+			// this._shape.options.color = '#b25555'
+			this._shape.setStyle({color:'#b25555'})
+		}
+		else{
+			// this._shape.options.color = '#58a05a'
+			this._shape.setStyle({color:'#58a05a'})
+		}	
+
 		var bounds;
 
 		// Update the shape based on the current position of this corner and the opposite point

@@ -160,7 +160,7 @@ L.Edit.SimpleShape = L.Handler.extend({
 		if (marker === this._moveMarker) {
 			this._move(latlng);
 		} else {
-			this._resize(latlng);
+			this._resize(latlng,e);
 		}
 
 		this._shape.redraw();
@@ -202,7 +202,7 @@ L.Edit.SimpleShape = L.Handler.extend({
 		if (marker === this._moveMarker) {
 			this._move(latlng);
 		} else {
-			this._resize(latlng);
+			this._resize(latlng,e);
 		}
 
 		this._shape.redraw();

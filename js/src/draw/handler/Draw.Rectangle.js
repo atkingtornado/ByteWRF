@@ -11,14 +11,15 @@ L.Draw.Rectangle = L.Draw.SimpleShape.extend({
 	options: {
 		shapeOptions: {
 			stroke: true,
-			color: '#aa3838',
+			color: '#58a05a',
 			weight: 4,
 			opacity: 0.5,
 			fill: true,
 			fillColor: null, //same as color by default
 			fillOpacity: 0.2,
 			showArea: true,
-			clickable: true
+			clickable: true,
+			maxArea: false
 		},
 		metric: true // Whether to use the metric measurement system or imperial
 	},
@@ -38,7 +39,19 @@ L.Draw.Rectangle = L.Draw.SimpleShape.extend({
 			this._shape = new L.Rectangle(new L.LatLngBounds(this._startLatLng, latlng), this.options.shapeOptions);
 			this._map.addLayer(this._shape);
 		} else {
-			this._shape.setBounds(new L.LatLngBounds(this._startLatLng, latlng));
+			var resize_latlngs = this._shape._defaultShape ? this._shape._defaultShape() : this._shape.getLatLngs();
+			area = L.GeometryUtil.geodesicArea(resize_latlngs);
+			metric_area = parseFloat(L.GeometryUtil.readableArea(area, this.options.metric).split(" ")[0])
+		
+			if(metric_area > this.options.shapeOptions.maxArea){
+				this.options.shapeOptions.color = '#b25555'
+				this._shape.options.color = '#b25555'
+			}
+			else{
+				this.options.shapeOptions.color = '#58a05a'
+				this._shape.options.color = '#58a05a'
+			}	
+			this._shape.setBounds(new L.LatLngBounds(this._startLatLng, latlng));	
 		}
 	},
 

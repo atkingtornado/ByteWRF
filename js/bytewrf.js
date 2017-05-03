@@ -24,13 +24,21 @@ $(document).ready(function(){
 
 	var drawControl = new L.Control.Draw({
 	 edit: {
-	    featureGroup: drawnItems
+	    featureGroup: drawnItems,
+	    selectedPathOptions: {
+	    	maintainColor: true
+	    }
 	 },
 	 draw: {
 	    polygon: false,
      	marker: false,
      	polyline: false,
-     	circle: false
+     	circle: false,
+     	rectangle: {
+			shapeOptions: {
+				maxArea: 10000000 
+			}
+     	}
 	 }
 	});
 	map.addControl(drawControl);
@@ -54,30 +62,39 @@ $(document).ready(function(){
  		$('#edit').hide()
  		$('#domain_confirm').hide()
  		$('#save').fadeIn('fast')
+
+ 		 $('.dropdown-header').each(function(i,obj){
+ 		 	if(!$(obj).parent().hasClass('disabled') && i!=0){
+ 		 		$(obj).parent().addClass('disabled')
+ 		 	}
+ 		 })
+
 	 })
 
 	 $('#save').on('click',function(){
-	 	console.log('save')
+	 	// drawControl._toolbars.edit._modes.edit.handler.save()
 	 	drawControl._toolbars.edit._modes.edit.handler.disable()
 	 	$('#save').hide()
-	 	$('#domain_confirm').fadeIn('fast')
 	 	$('#edit').fadeIn('fast')
+
+	 	var domain_color = drawnItems.getLayers()[0].options.color
+	 	if (domain_color == '#58a05a'){
+	 		$('#domain_confirm').fadeIn('fast')
+	 	}
+
 	 });
 
 	 $('#mapid').on('click',function(){
 	 	if(drawing){
-	 		console.log('finish draw')
 	 		drawing = false
 	 		$('#draw').hide()
 	 		$('#edit').fadeIn('fast')
-	 		$('#domain_confirm').fadeIn('fast')
+
+	 		var domain_color = drawnItems.getLayers()[0].options.color
+		 	if (domain_color == '#58a05a'){
+		 		$('#domain_confirm').fadeIn('fast')
+		 	}
 	 	}
-	 	// if(editing){
-	 	// 	console.log('finish edit')
-	 	// 	editing = false
-	 	// 	$('#edit').hide()
-	 	// 	$('#save').fadeIn('fast')
-	 	// }
 	 })
 
 	 $('#domain_confirm').on('click',function(){
@@ -86,25 +103,27 @@ $(document).ready(function(){
 	 })
 
 	$('.dropdown-header').click(function(){
-        $(this).children('.dropdown-arrow').toggleClass('rotated');
-        $(this).next().slideToggle('fast')
 
-        var clicked_id = $(this).parent().attr('id')
+		if(!$(this).parent().hasClass('disabled')){
+	        $(this).children('.dropdown-arrow').toggleClass('rotated');
+	        $(this).next().slideToggle('fast')
 
-        $('.dropdown-header').each(function(i,obj){
-        	console.log($(this).parent().attr('id'),$(obj).parent().attr('id'))
-        	if($(obj).parent().attr('id') != clicked_id){
-        		console.log(i)
-        		if($(obj).children('.dropdown-arrow').hasClass('rotated')){
-        			console.log(obj)
-        			$(obj).children('.dropdown-arrow').toggleClass('rotated');
-        			$(obj).next().slideToggle('fast')
-        		}
-        	}
-        })
+	        var clicked_id = $(this).parent().attr('id')
+
+	        $('.dropdown-header').each(function(i,obj){
+	        	if($(obj).parent().attr('id') != clicked_id){
+	        		if($(obj).children('.dropdown-arrow').hasClass('rotated')){
+	        			$(obj).children('.dropdown-arrow').toggleClass('rotated');
+	        			$(obj).next().slideToggle('fast')
+	        		}
+	        	}
+	        })
+	    }
     });
 
+	var $resolution = $('.resolution-select').on('touchstart click',function() {
+	    $resolution.removeClass('resolution-selected');
+	    $(this).addClass('resolution-selected');
+	});
 
-
-	 
 });
