@@ -56,43 +56,44 @@
 		<div id='menu'>
 			<div id='step1-dropdown' class='dropdown'>
 				<div class="dropdown-header ">
-                    <h3>1: Domain</h3> 
+                    <h3>1: Grid</h3> 
                     <div class="dropdown-arrow rotated"> 
                     	<i style="color: white;" class="fa fa-chevron-down fa-2x"></i>
                     </div>
                 </div>
                 <div class='dropdown-content'>
-                	<div id='draw' class='menu-button button -dark center'>Draw</div>
-					<div id='edit' class='menu-button button -dark center' style="display: none">Edit</div>
-					<div id='save' class='menu-button button -dark center' style="display: none">Save</div>
+                    <div data-resolution='1' id="ultra" class="resolution-select resolution-selected">
+                        <p>Ultra High-Res (1km)</p>
+                    </div>
+                    <div data-resolution='3' id="high" class="resolution-select">
+                        <p>High-Res (3km)</p>
+                    </div>
+                    <div data-resolution='12' id="medium" class="resolution-select">
+                        <p>Medium-Res (12km)</p>
+                    </div>
+                    <div data-resolution='32' id="coarse" class="resolution-select">
+                        <p>Coarse-Res (32km)</p>
+                    </div>
+                    <br>
+                    <div id='resolution_confirm' class='menu-button button -green center'>Confirm</div>
 
-					<div id='domain_confirm' class='menu-button button -green center' style='display: none'>Confirm</div>
                 </div>
 			</div>
 
 			<div id='step2-dropdown' class='dropdown disabled'>
 				<div class="dropdown-header ">
-                    <h3>2: Grid</h3> 
+                    <h3>2: Domain</h3> 
                     <div class="dropdown-arrow"> 
                     	<i style="color: white;" class="fa fa-chevron-down fa-2x"></i>
                     </div>
                 </div>
                 <div class='dropdown-content' style="display: none">
+                	<div id='draw' class='menu-button button -dark center'>Draw</div>
+					<div id='edit' class='menu-button button -dark center' style="display: none">Edit</div>
+					<div id='save' class='menu-button button -dark center' style="display: none">Save</div>
 
-                    <div id="ultra" class="resolution-select resolution-selected">
-                        <p>Ultra High-Res (1km)</p>
-                    </div>
-                    <div id="high" class="resolution-select">
-                        <p>High-Res (3km)</p>
-                    </div>
-                    <div id="medium" class="resolution-select">
-                        <p>Medium-Res (10km)</p>
-                    </div>
-                    <div id="coarse" class="resolution-select">
-                        <p>Coarse-Res (15km)</p>
-                    </div>
-                    <br>
-                    <div id='resolution_confirm' class='menu-button button -green center'>Confirm</div>
+					<div id='domain_confirm' class='menu-button button -green center' style='display: none'>Confirm</div>
+
                 </div>
 			</div>
 

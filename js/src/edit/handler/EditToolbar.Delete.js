@@ -139,7 +139,7 @@ L.EditToolbar.Delete = L.Handler.extend({
 
 		this._deletableLayers.removeLayer(layer);
 
-		this._deletedLayers.addLayer(layer);
+		// this._deletedLayers.addLayer(layer);
 
 		layer.fire('deleted');
 	},

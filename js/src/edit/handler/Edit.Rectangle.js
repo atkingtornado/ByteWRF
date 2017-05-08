@@ -79,7 +79,7 @@ L.Edit.Rectangle = L.Edit.SimpleShape.extend({
 	_resize: function (latlng,e) {
 		var resize_latlngs = this._shape._defaultShape ? this._shape._defaultShape() : this._shape.getLatLngs();
 		area = L.GeometryUtil.geodesicArea(resize_latlngs);
-		metric_area = parseFloat(L.GeometryUtil.readableArea(area, true).split(" ")[0])
+		metric_area = parseFloat(L.GeometryUtil.readableArea(area, true).split(" ")[0])*0.01
 
 		if(metric_area > this._shape.options.maxArea){
 			// this._shape.options.color = '#b25555'

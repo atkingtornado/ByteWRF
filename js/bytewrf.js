@@ -77,16 +77,9 @@ $(document).ready(function(){
  		$('#domain_confirm').hide()
  		$('#save').fadeIn('fast')
 
- 		 $('.dropdown-header').each(function(i,obj){
- 		 	if(!$(obj).parent().hasClass('disabled') && i!=0){
- 		 		$(obj).parent().addClass('disabled')
- 		 	}
- 		 })
-
 	 })
 
 	 $('#save').on('click',function(){
-	 	// drawControl._toolbars.edit._modes.edit.handler.save()
 	 	drawControl._toolbars.edit._modes.edit.handler.disable()
 	 	$('#save').hide()
 	 	$('#edit').fadeIn('fast')
@@ -111,10 +104,6 @@ $(document).ready(function(){
 	 	}
 	 })
 
-	 $('#domain_confirm').on('click',function(){
-	 	$('#step2-dropdown').removeClass('disabled')
-	 	$($('#step2-dropdown').children()[0]).trigger('click')
-	 })
 
 	$('.dropdown-header').click(function(){
 
@@ -135,9 +124,27 @@ $(document).ready(function(){
 	    }
     });
 
+    var grid_spacing = 1
+ 	var maxGridPoints = 10000
+ 	drawControl.options.draw.rectangle.shapeOptions.maxArea = maxGridPoints*(grid_spacing**2)
+
 	var $resolution = $('.resolution-select').on('touchstart click',function() {
 	    $resolution.removeClass('resolution-selected');
 	    $(this).addClass('resolution-selected');
+	   	drawControl._toolbars.edit._modes.remove.handler.removeAllLayers()
+	   	$('#draw').show()
+	   	$('#save').hide()
+	   	$('#edit').hide()
+	   	$('#domain_confirm').hide()
+
+     	$('.dropdown-header').each(function(i,obj){
+		 	if(!$(obj).parent().hasClass('disabled') && i!=0){
+		 		$(obj).parent().addClass('disabled')
+		 	}
+		 })
+
+     	grid_spacing = $(this).data().resolution
+     	drawControl.options.draw.rectangle.shapeOptions.maxArea = maxGridPoints*(grid_spacing**2)
 	});
 
 	var $optimization = $('.optimize-select').on('touchstart click',function() {
@@ -146,6 +153,10 @@ $(document).ready(function(){
 	});
 
 	$('#resolution_confirm').on('click',function(){
+	 	$('#step2-dropdown').removeClass('disabled')
+	 	$($('#step2-dropdown').children()[0]).trigger('click')
+	 })
+	$('#domain_confirm').on('click',function(){
 	 	$('#step3-dropdown').removeClass('disabled')
 	 	$($('#step3-dropdown').children()[0]).trigger('click')
 	 })

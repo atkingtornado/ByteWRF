@@ -41,8 +41,8 @@ L.Draw.Rectangle = L.Draw.SimpleShape.extend({
 		} else {
 			var resize_latlngs = this._shape._defaultShape ? this._shape._defaultShape() : this._shape.getLatLngs();
 			area = L.GeometryUtil.geodesicArea(resize_latlngs);
-			metric_area = parseFloat(L.GeometryUtil.readableArea(area, this.options.metric).split(" ")[0])
-		
+			metric_area = parseFloat(L.GeometryUtil.readableArea(area, this.options.metric).split(" ")[0])*0.01
+			
 			if(metric_area > this.options.shapeOptions.maxArea){
 				this.options.shapeOptions.color = '#b25555'
 				this._shape.options.color = '#b25555'
